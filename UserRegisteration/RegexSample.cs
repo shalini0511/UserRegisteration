@@ -89,7 +89,7 @@ namespace UserRegisteration
                 return ex.Message;
             }
         }
-        public static string ValidatingLastName(string lastName)
+        public static Func<string, string> ValidatingLastName = (lastName) =>
         {
             string pattern = "^[A-Z][a-z]{2,}$";
             Regex regex = new Regex(pattern);
@@ -121,8 +121,8 @@ namespace UserRegisteration
             }
             // return default;
 
-        }
-        public static string ValidatingEmailId(string email)
+        };
+        public static Func<string, string> ValidatingEmailId = (email) =>
         {
 
             string emailPattern = (@"^[a-zA-Z0-9]+([\.\+\-][a-zA-Z0-9]+)?@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,}(\.[a-zA-Z]+)?)$");
@@ -154,9 +154,9 @@ namespace UserRegisteration
                 return ex.Message;
             }
 
-        }
+        };
 
-        public static string ValidatingPhoneNum(string phoneNum)
+        public static Func<string, string> ValidatingPhoneNum = (phoneNum) =>
         {
             string[] phoneNumInput = { "91 7852234896", " 91 9865741548", "919865795312", "91@123", "A865" };
             string phoneNumPattern = @"^[0-9]+[\s]+[0-9]{10}$";
@@ -187,10 +187,11 @@ namespace UserRegisteration
             {
                 return ex.Message;
             }
-        }
+        };
 
 
-        public static string ValidatingPassWord(string password)
+
+        public static Func<string, string> ValidatingPassWord = (password) =>
         {
             string[] passwordInput = { "Radhika@12", "sumAthi_32", "Priya123", "praveena" };
             string passwordPattern = @"(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?!.*[<>`])(?=[^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*[.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\][^.,:;'!@#$%^&*_+=|(){}[?\-\]\/\\]*$).{8,}$";
@@ -225,6 +226,6 @@ namespace UserRegisteration
             }
 
 
-        }
+        };
     }
 }
